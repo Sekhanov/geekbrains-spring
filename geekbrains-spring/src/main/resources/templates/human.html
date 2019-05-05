@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>persons site</title>
+<link rel="stylesheet" th:href="@{/css/stile.css}"
+	href="../static/css/stile.css">
+</head>
+
+<body>
+	<p>hello!</p>
+	<h2>Table of All Humans</h2>
+	<table>
+		<tr>
+			<th>name</th>
+			<th>age</th>
+			<th>gender</th>
+			<th>pet</th>
+		</tr>
+		<tr th:each="human : ${humans}">
+			<td th:text="${human.name}"></td>
+			<td th:text="${human.age}"></td>
+			<td th:text="${human.gender}"></td>
+			<td th:text="${human.pet.name}"></td>
+		</tr>
+	</table>
+	<br>
+	<br>
+	
+	<a href="http://localhost:8080/human/all">Get JSON List of All Humans</a> 
+	
+
+</body>
+</html>
