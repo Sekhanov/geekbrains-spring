@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>persons site</title>
+    <link rel="stylesheet" th:href="@{/css/stile.css}" href="../static/css/stile.css">
+  </head>
+  
+  <body>
+	<p>hello and welcome!</p>
+	<a th:href="@{/human}" href="human.html">humans table from model</a>  
+	<p>summ</p>
+	<form action="/math/summ" method="post">
+	<label>first number
+		<input name="a" type="number">
+	</label>
+	<br>
+	<label>second number
+		<input name="b" type="number">
+	</label>
+	<br>
+	<button>calculate summ</button>
+	</form>
+     
+  
+  </body>
+</html>

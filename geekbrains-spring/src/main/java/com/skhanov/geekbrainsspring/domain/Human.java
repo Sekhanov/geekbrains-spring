@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 public class Human {
 
 	public enum Gender {
-		MALE, FAMALE
+		MALE, FEMALE
 	}
 	
 	@NonNull
