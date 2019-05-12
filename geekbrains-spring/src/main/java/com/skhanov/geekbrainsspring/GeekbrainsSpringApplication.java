@@ -1,20 +1,37 @@
 package com.skhanov.geekbrainsspring;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-public class GeekbrainsSpringApplication implements WebMvcConfigurer {	
-
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/").setViewName("home");
-	}
+public class GeekbrainsSpringApplication implements CommandLineRunner {	
 
 	public static void main(String[] args) {
 		SpringApplication.run(GeekbrainsSpringApplication.class, args);
 	}
 
+	@Override
+	public void run(String... args) throws Exception {
+		System.out.println("hello~!");		
+	}
+
 }
+
+
+
+//@SpringBootApplication
+//public class GeekbrainsSpringApplication implements WebMvcConfigurer {	
+//
+//	@Override
+//	public void addViewControllers(ViewControllerRegistry registry) {
+//		registry.addViewController("/").setViewName("home");
+//	}
+//
+//	public static void main(String[] args) {
+//		SpringApplication.run(GeekbrainsSpringApplication.class, args);
+//	}
+//
+//}
+
+
