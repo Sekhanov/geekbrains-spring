@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: geekbrains-spring
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: s.khanov
+Implementation-Vendor-Id: com.skhanov
+Build-Jdk: 1.8.0_201
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/geekbrains-spring
+Created-By: Maven Integration for Eclipse
+

@@ -12,6 +12,7 @@ import com.skhanov.geekbrainsspring.data.AcademicPerformanceRepository;
 import com.skhanov.geekbrainsspring.data.CourseRepository;
 import com.skhanov.geekbrainsspring.data.StudentRepository;
 import com.skhanov.geekbrainsspring.domain.university.AcademicPerformance;
+import com.skhanov.geekbrainsspring.domain.university.AcademicPerformanceId;
 import com.skhanov.geekbrainsspring.domain.university.Course;
 import com.skhanov.geekbrainsspring.domain.university.Student;
 
@@ -19,11 +20,11 @@ import com.skhanov.geekbrainsspring.domain.university.Student;
 public class GeekbrainsSpringApplication implements CommandLineRunner {	
 	
 	@Autowired
-	AcademicPerformanceRepository academicPerformanceRepository;
+	private AcademicPerformanceRepository academicPerformanceRepository;
 	@Autowired
-	StudentRepository studentRepository;
+	private StudentRepository studentRepository;
 	@Autowired
-	CourseRepository courseRepository;
+	private CourseRepository courseRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(GeekbrainsSpringApplication.class, args);
@@ -32,28 +33,53 @@ public class GeekbrainsSpringApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("hello~!");	
-//		Iterable<AcademicPerformance> academicPerformance = academicPerformanceRepository.findAll();
-//		for (AcademicPerformance ap : academicPerformance) {
-//			System.out.println(ap.getAcademicPerformanceId().getStudent().getName());
-//			System.out.println(ap.getAcademicPerformanceId().getCourse().getName());
-//			System.out.println(ap.getScore());
-//			System.out.println(ap.getLessonsCount());
-//			System.out.println("-------------------");
-//		}
+		System.out.println("hello!");
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("enter a name");
-		String name = scanner.nextLine();
-		List<Course> studentCources = getStudentsCources(name);
+		System.out.println("enter a name:");
+		String studentname = scanner.nextLine();
+		List<Course> studentCources = getStudentsCources(studentname);
+		System.out.println("Student with name " + studentname + " studies the following courses:");
 		for (Course course : studentCources) {
 			System.out.println(course.getName());
 		}
+		System.out.println("---------------");
+		
+		System.out.println("ender the course:");
+		String courceName = scanner.nextLine();
+		List<Student> students = getStudensFromCourse(courceName);
+		System.out.println("Course contains following students:");
+		for (Student student : students) {
+			System.out.println(student.getName());
+		}
+		System.out.println("-----------------");
+		System.out.println("enter studen and course name to show academic performance");
+		System.out.println("student name:");
+		String perfStud = scanner.nextLine();
+		System.out.println("course name:");
+		String perfCourse = scanner.nextLine();
+		AcademicPerformance academicPerformance = getAcademicPerformance(perfStud, perfCourse);
+		System.err.println("performance: " + academicPerformance.getScore());
+		System.out.println("lesson passed: " + academicPerformance.getLessonsCount() );
+		scanner.close();
+		
 		
 	}
 	
 	private List<Course> getStudentsCources(String name) {
 		Student student = studentRepository.findByName(name);
 		return student.getCourses();
+	}
+	
+	private List<Student> getStudensFromCourse(String name) {
+		Course course = courseRepository.findByName(name);
+		return course.getStudents();
+	}
+	
+	private AcademicPerformance getAcademicPerformance(String studentName, String courseName) {
+		Student student = studentRepository.findByName(studentName);
+		Course course = courseRepository.findByName(courseName);
+		AcademicPerformanceId academicPerformanceId = new AcademicPerformanceId(student, course);
+		return academicPerformanceRepository.findById(academicPerformanceId).get();
 	}
 
 }
