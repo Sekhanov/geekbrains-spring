@@ -26,12 +26,11 @@ public class StudentController {
 
 	
 	@ModelAttribute
-	public void addModelAttributes(Model model) {
-		
+	public void addModelAttributes(Model model) {		
 		Pageable pageable = PageRequest.of(0, 3);
-		Page<AcademicPerformance> data = academicPerformanceRepository.findAll(pageable);
+		Page<AcademicPerformance> data = academicPerformanceRepository.findAll(pageable);	
 		model.addAttribute("academicPerformances", data);
-		model.addAttribute("pageNumber", data.getNumber());
+		model.addAttribute("pageNumber", data.getNumber() + 1);
 	}
 	
 	@GetMapping
@@ -39,10 +38,25 @@ public class StudentController {
 		return "student";
 	}
 	
+
 	@GetMapping("next")	
-	public void nextPage(@ModelAttribute("academicPerformances") Page<AcademicPerformance> academicPerformances) {	
-		academicPerformances = academicPerformanceRepository.findAll(academicPerformances.nextPageable()); 
-		
+	public String nextPage(@ModelAttribute("academicPerformances") Page<AcademicPerformance> data, Model model) {
+		if(data.hasNext()) {
+			data = academicPerformanceRepository.findAll(data.nextPageable());
+		}
+		model.addAttribute("academicPerformances", data);
+		model.addAttribute("pageNumber", data.getNumber() + 1);
+		return "student";
+	}
+	
+	@GetMapping("previous")
+	public String previousPage(@ModelAttribute("academicPerformances") Page<AcademicPerformance> data, Model model) {
+		if(data.hasPrevious()) {
+			data = academicPerformanceRepository.findAll(data.previousPageable());
+		}		
+		model.addAttribute("academicPerformances", data);
+		model.addAttribute("pageNumber", data.getNumber() + 1);
+		return "student";
 	}
 
 	
