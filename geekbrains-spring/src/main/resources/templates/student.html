@@ -7,9 +7,9 @@
 	href="../static/css/stile.css">
 </head>
 
-<body>	
+<body>
 
-	<table >
+	<table>
 		<tr>
 			<th>Student Name</th>
 			<th>Course</th>
@@ -17,14 +17,29 @@
 			<th>Lesson passed</th>
 		</tr>
 		<tr th:each="academicPerformance : ${academicPerformances}">
-			<td th:text="${academicPerformance.academicPerformanceId.student.name}"></td>
-			<td th:text="${academicPerformance.academicPerformanceId.course.name}"></td>
+			<td
+				th:text="${academicPerformance.academicPerformanceId.student.name}"></td>
+			<td
+				th:text="${academicPerformance.academicPerformanceId.course.name}"></td>
 			<td th:text="${academicPerformance.score}"></td>
 			<td th:text="${academicPerformance.lessonsCount}"></td>
 		</tr>
 	</table>
 	<a th:href="@{/student/previous}">предыдущая страница</a>
 	<a th:href="@{/student/next}">следующая страница</a>
-	<p>Текущая страница:<span th:text="${pageNumber}"></span></p>
+	<p>
+		Текущая страница:<span th:text="${pageNumber}"></span>
+	</p>
+	<form method="POST">
+		<label> Минимальный балл 
+			<input name="minScore" type="number">
+		</label> 
+		<br>
+		<label> Максимальный балл 
+			<input name="maxScore" type="number">
+		</label>
+		<br>
+		<button type="submit">получить</button>
+	</form>
 </body>
 </html>

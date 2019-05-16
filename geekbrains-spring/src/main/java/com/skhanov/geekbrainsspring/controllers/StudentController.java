@@ -1,5 +1,7 @@
 package com.skhanov.geekbrainsspring.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -8,8 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.skhanov.geekbrainsspring.data.AcademicPerformanceRepository;
 import com.skhanov.geekbrainsspring.domain.university.AcademicPerformance;
@@ -22,13 +24,14 @@ public class StudentController {
 	
 	@Autowired
 	private AcademicPerformanceRepository academicPerformanceRepository;
+	private Page<AcademicPerformance> data;
 		
 
 	
 	@ModelAttribute
 	public void addModelAttributes(Model model) {		
 		Pageable pageable = PageRequest.of(0, 3);
-		Page<AcademicPerformance> data = academicPerformanceRepository.findAll(pageable);	
+		data = academicPerformanceRepository.findAll(pageable);	
 		model.addAttribute("academicPerformances", data);
 		model.addAttribute("pageNumber", data.getNumber() + 1);
 	}
@@ -40,7 +43,7 @@ public class StudentController {
 	
 
 	@GetMapping("next")	
-	public String nextPage(@ModelAttribute("academicPerformances") Page<AcademicPerformance> data, Model model) {
+	public String nextPage(Model model) {
 		if(data.hasNext()) {
 			data = academicPerformanceRepository.findAll(data.nextPageable());
 		}
@@ -50,12 +53,19 @@ public class StudentController {
 	}
 	
 	@GetMapping("previous")
-	public String previousPage(@ModelAttribute("academicPerformances") Page<AcademicPerformance> data, Model model) {
+	public String previousPage(Model model) {
 		if(data.hasPrevious()) {
 			data = academicPerformanceRepository.findAll(data.previousPageable());
 		}		
 		model.addAttribute("academicPerformances", data);
 		model.addAttribute("pageNumber", data.getNumber() + 1);
+		return "student";
+	}
+	
+	@PostMapping
+	public String findStudentsByScore(Model model, @ModelAttribute("minScore") int minScore, @ModelAttribute("maxScore") int maxScore) {
+		List<AcademicPerformance> listAP =  academicPerformanceRepository.findByScoreBetween(minScore, maxScore);		
+		model.addAttribute("academicPerformances", listAP);
 		return "student";
 	}
 
