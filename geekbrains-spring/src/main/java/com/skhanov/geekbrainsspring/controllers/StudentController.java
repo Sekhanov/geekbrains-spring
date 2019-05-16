@@ -1,6 +1,7 @@
 package com.skhanov.geekbrainsspring.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -61,10 +62,13 @@ public class StudentController {
 		model.addAttribute("pageNumber", data.getNumber() + 1);
 		return "student";
 	}
-	
+
 	@PostMapping
-	public String findStudentsByScore(Model model, @ModelAttribute("minScore") int minScore, @ModelAttribute("maxScore") int maxScore) {
-		List<AcademicPerformance> listAP =  academicPerformanceRepository.findByScoreBetween(minScore, maxScore);		
+	public String findStudentsByScore(Model model, @ModelAttribute("minScore") Optional<Integer> minScore, @ModelAttribute("maxScore") Optional<Integer> maxScore) {
+		int min = minScore.orElse(0);
+		int max = maxScore.orElse(0);
+		
+		List<AcademicPerformance> listAP =  academicPerformanceRepository.findByScoreBetween(min, max);		
 		model.addAttribute("academicPerformances", listAP);
 		return "student";
 	}

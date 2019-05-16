@@ -30,13 +30,13 @@
 	<p>
 		Текущая страница:<span th:text="${pageNumber}"></span>
 	</p>
-	<form method="POST">
+	<form method="POST" action="/student">
 		<label> Минимальный балл 
-			<input name="minScore" type="number">
+			<input name="minScore" value="0" type="number">
 		</label> 
 		<br>
 		<label> Максимальный балл 
-			<input name="maxScore" type="number">
+			<input name="maxScore" value="0" type="number">
 		</label>
 		<br>
 		<button type="submit">получить</button>
