@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +22,7 @@ import com.skhanov.geekbrainsspring.domain.university.AcademicPerformance;
 
 @Controller
 @RequestMapping("student")
+@Scope("session")
 public class StudentController {
 	
 	@Autowired
