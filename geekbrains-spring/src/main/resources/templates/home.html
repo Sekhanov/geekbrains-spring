@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      >
   <head>
     <title>persons site</title>
     <link rel="stylesheet" th:href="@{/css/stile.css}" href="../static/css/stile.css">
@@ -14,8 +16,14 @@
             <li><a th:hfer="@{/}">home</a></li>
             <li><a th:href="@{/admin}">admin resource</a></li>
             <li><a th:href="@{/login}">login</a></li>
+            <li sec:authorize="hasAuthority('ADMIN')">for admin</li>
+            
         </ul>
-    </nav>
+    </nav>    
+
+	<sec:authorize access="isAuthenticated()">
+    authenticated as <sec:authentication property="principal.username" /> 
+	</sec:authorize>
 	
 	
 	<a th:href="@{/student}" href="student.html">hw lesson 4 - students</a> 
@@ -35,7 +43,5 @@
 	<br>
 	<button>calculate summ</button>
 	</form>
-     
-  
   </body>
 </html>
