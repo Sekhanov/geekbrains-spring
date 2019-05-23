@@ -6,8 +6,18 @@
     <link rel="stylesheet" th:href="@{/css/stile.css}" href="../static/css/stile.css">
   </head>
   
-  <body>
-	<p>hello and welcome!</p>
+    <body>  
+	<p>hello and welcome!</p><span></span>
+	
+	<nav>
+        <ul>
+            <li><a th:hfer="@{/}">home</a></li>
+            <li><a th:href="@{/admin}">admin resource</a></li>
+            <li><a th:href="@{/login}">login</a></li>
+        </ul>
+    </nav>
+	
+	
 	<a th:href="@{/student}" href="student.html">hw lesson 4 - students</a> 
 	<br>	 
 	<a th:href="@{/book}" href="book.html">hw lesson 5 - mvc thymeleaf</a> 

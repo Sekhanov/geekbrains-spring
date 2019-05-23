@@ -13,7 +13,8 @@ public class GeekbrainsSpringApplication implements WebMvcConfigurer {
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/").setViewName("home");
-	}
+		registry.addViewController("/admin").setViewName("admin");
+		}
 
 	public static void main(String[] args) {
 		SpringApplication.run(GeekbrainsSpringApplication.class, args);
