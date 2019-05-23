@@ -17,9 +17,13 @@
 			<li><a th:hfer="@{/}">home</a></li>
 			<li><a th:href="@{/admin}">admin resource</a></li>
 			<li><a th:href="@{/login}">login</a></li>
-
+			<li sec:authorize="isAuthenticated()">Logged user: <span sec:authentication="name"></span> <br> Roles: <span sec:authentication="principal.authorities"></span> <a th:href="@{/logout}">Sign Out</a></li>
 		</ul>
 	</nav>
+	
+	    <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out"/>
+        </form>
 
 	<div sec:authorize="isAuthenticated()">This content is only shown
 		to authenticated users.</div>

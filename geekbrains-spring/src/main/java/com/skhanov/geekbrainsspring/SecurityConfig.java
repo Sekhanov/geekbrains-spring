@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN")
 		.antMatchers("/", "/**").permitAll()
 		.and().formLogin().loginPage("/login").failureUrl("/accessDenied").loginProcessingUrl("/authenticateTheUser")		
-		.and().logout().logoutSuccessUrl("/");
+		.and().logout().logoutSuccessUrl("/").permitAll();
 	}
 	
 //    @Bean
