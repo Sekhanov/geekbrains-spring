@@ -1,45 +1,101 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <title>persons site</title>
-<link rel="stylesheet" th:href="@{/css/stile.css}"
-	href="../static/css/stile.css">
+<link rel="stylesheet" th:href="@{/css/stile.css}" href="../static/css/stile.css">
 </head>
 
 <body>
+	<header>
+		<nav class="main-navigation">
+			<ul class="main-navigation-list">
+				<li>
+					<a th:hfer="@{/}">home</a>
+				</li>
+				<li sec:authorize="hasRole('ROLE_ADMIN')">
+					<a th:href="@{/admin}">admin resource</a>
+				</li>
+				<li>
+					<a th:href="@{/login}">login</a>
+				</li>
+				<li sec:authorize="isAuthenticated()">
+					<a th:href="@{/userinfo}">
+						<span sec:authentication="name"></span>
+					</a>
+					<a th:href="@{/logout}">Sign Out</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
 
-	<table>
-		<tr>
-			<th>Student Name</th>
-			<th>Course</th>
-			<th>Score</th>
-			<th>Lesson passed</th>
-		</tr>
-		<tr th:each="academicPerformance : ${academicPerformances}">
-			<td
-				th:text="${academicPerformance.academicPerformanceId.student.name}"></td>
-			<td
-				th:text="${academicPerformance.academicPerformanceId.course.name}"></td>
-			<td th:text="${academicPerformance.score}"></td>
-			<td th:text="${academicPerformance.lessonsCount}"></td>
-		</tr>
-	</table>
-	<a th:href="@{/student/previous}">предыдущая страница</a>
-	<a th:href="@{/student/next}">следующая страница</a>
-	<p>
-		Текущая страница:<span th:text="${pageNumber}"></span>
-	</p>
-	<form method="POST" action="/student">
-		<label> Минимальный балл 
-			<input name="minScore" value="0" type="number">
-		</label> 
-		<br>
-		<label> Максимальный балл 
-			<input name="maxScore" value="0" type="number">
-		</label>
-		<br>
-		<button type="submit">получить</button>
-	</form>
+	<div sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')">
+		<h2>Course detail table</h2>
+		<table>
+			<tr>
+				<th>Student Name</th>
+				<th>Course</th>
+				<th>Score</th>
+				<th>Lesson passed</th>
+			</tr>
+			<tr th:each="academicPerformance : ${academicPerformances}">
+				<td th:text="${academicPerformance.academicPerformanceId.student.name}"></td>
+				<td th:text="${academicPerformance.academicPerformanceId.course.name}"></td>
+				<td th:text="${academicPerformance.score}"></td>
+				<td th:text="${academicPerformance.lessonsCount}"></td>
+			</tr>
+		</table>
+		<a th:href="@{/student/previous}">предыдущая страница</a>
+		<a th:href="@{/student/next}">следующая страница</a>
+		<p>
+			Текущая страница:
+			<span th:text="${pageNumber}"></span>
+		</p>
+	</div>
+
+	<div sec:authorize="hasRole('USER')">
+		<h2>Student List</h2>
+		<table>
+			<tr>
+				<th>Student Name</th>
+			</tr>
+			<tr th:each="academicPerformance : ${academicPerformances}">
+				<td th:text="${academicPerformance.academicPerformanceId.student.name}"></td>
+
+			</tr>
+		</table>
+		<a th:href="@{/student/previous}">предыдущая страница</a>
+		<a th:href="@{/student/next}">следующая страница</a>
+		<p>
+			Текущая страница:
+			<span th:text="${pageNumber}"></span>
+		</p>
+	</div>
+
+	<div sec:authorize="hasRole('ROLE_ADMIN')">
+		<form method="POST" action="/course/add-course">
+			<label>
+				Course name:
+				<input name=courseName type="text">
+			</label>
+			<button type="submit">add course</button>
+		</form>
+	</div>
+	<div class="get-sudent-score-between">
+		<h2>Get student from score form</h2>
+		<form method="POST" action="/student">
+			<label>
+				Min score:
+				<input name="minScore" value="0" type="number">
+			</label>
+			<br>
+			<label>
+				Max score:
+				<input name="maxScore" value="0" type="number">
+			</label>
+			<br>
+			<button type="submit">get</button>
+		</form>
+	</div>
+
 </body>
 </html>

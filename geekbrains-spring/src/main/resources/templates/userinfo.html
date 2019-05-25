@@ -9,7 +9,7 @@
 	<header>
 		<nav class="main-navigation">
 			<ul class="main-navigation-list">
-				<li><a th:hfer="@{/}">home</a></li>
+				<li><a th:href="@{/}">home</a></li>
 				<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin}">admin resource</a></li>
 				<li><a th:href="@{/login}">login</a></li>
 				<li sec:authorize="isAuthenticated()"><span sec:authentication="name"></span> <a th:href="@{/logout}">Sign Out</a></li>
@@ -17,7 +17,11 @@
 		</nav>
 	</header>
 
-	<h1>access deny</h1>
+	<p sec:authorize="isAuthenticated()">
+		<span sec:authentication="name"></span>
+		, welcome to site!!! You have next privileges:
+		<span sec:authentication="principal.authorities"></span>
+	</p>
 
 </body>
 </html>

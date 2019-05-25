@@ -1,27 +1,28 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <title>persons site</title>
-    <link rel="stylesheet" th:href="@{/css/stile.css}" href="../static/css/stile.css">
-  </head>
-  
-  <body>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>persons site</title>
+<link rel="stylesheet" th:href="@{/css/stile.css}" href="../static/css/stile.css">
+</head>
 
-  <form th:action="@{/authenticateTheUser}" method="POST">
-    <div th:if="${param.error} != null">
-        <i>Sorry! You entered invalid login/password.</i>
-    </div>
+<body>
 
-    <p>
-        Username: <input type="text" name="username" />
-    </p>
+	<form th:action="@{/authenticateTheUser}" method="POST">
+		<div th:if="${param.error} != null">
+			<i>Sorry! You entered invalid login/password.</i>
+		</div>
 
-    <p>
-        Password: <input type="password" name="password" />
-    </p>
+		<p>
+			Username:
+			<input type="text" name="username" />
+		</p>
 
-    <input type="submit" value="Login" />
-</form>
-  </body>
+		<p>
+			Password:
+			<input type="password" name="password" />
+		</p>
+
+		<input type="submit" value="Login" />
+	</form>
+</body>
 </html>

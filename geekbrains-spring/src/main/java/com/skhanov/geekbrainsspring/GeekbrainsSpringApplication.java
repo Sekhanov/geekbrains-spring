@@ -15,6 +15,7 @@ public class GeekbrainsSpringApplication implements WebMvcConfigurer {
 		registry.addViewController("/").setViewName("home");
 		registry.addViewController("/admin").setViewName("admin");
 		registry.addViewController("/home").setViewName("home");
+		registry.addViewController("/userinfo").setViewName("userinfo");
 		}
 
 	public static void main(String[] args) {

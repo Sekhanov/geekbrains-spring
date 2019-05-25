@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>persons site</title>
-<link rel="stylesheet" th:href="@{/css/stile.css}"
-	href="../static/css/stile.css">
+<link rel="stylesheet" th:href="@{/css/stile.css}" href="../static/css/stile.css">
 </head>
 
 <body>
@@ -12,26 +10,27 @@
 		<tr>
 			<th>book name</th>
 			<th>book description</th>
-			<th>book year</th>			
+			<th>book year</th>
 		</tr>
 		<tr th:each="book : ${books}">
-			<td
-				th:text="${book.name}"></td>
-			<td
-				th:text="${book.description}"></td>
+			<td th:text="${book.name}"></td>
+			<td th:text="${book.description}"></td>
 			<td th:text="${book.releaseYear}"></td>
 		</tr>
 	</table>
 	<form method="POST" action="/book">
-		<label> Название книги
+		<label>
+			Название книги
 			<input name="bookName" type="text">
-		</label> 
+		</label>
 		<br>
-		<label> Описание книги 
+		<label>
+			Описание книги
 			<input name="bookDescription" type="text">
 		</label>
 		<br>
-		<label> Описание книги 
+		<label>
+			Описание книги
 			<input name="bookReleaseDate" type="number">
 		</label>
 		<br>

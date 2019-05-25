@@ -1,22 +1,21 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <title>persons site</title>
-    <link rel="stylesheet" th:href="@{/css/stile.css}" href="../static/css/stile.css">
-  </head>
-  
-    <body>  
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>persons site</title>
+<link rel="stylesheet" th:href="@{/css/stile.css}" href="../static/css/stile.css">
+</head>
+
+<body>
 	<p>hello and welcome!</p>
 	<nav>
-        <ul>
-            <li><a th:href="@{/}">home</a></li>
-            <li><a th:href="@{/admin}">admin resource</a></li>
-            <li><a th:href="@{/login}">login</a></li>
-        </ul>
-    </nav>	
+		<ul>
+			<li><a th:href="@{/}">home</a></li>
+			<li><a th:href="@{/admin}">admin resource</a></li>
+			<li><a th:href="@{/login}">login</a></li>
+		</ul>
+	</nav>
 
-     <h1>admin resource</h1>
-  
-  </body>
+	<h1>admin resource</h1>
+
+</body>
 </html>
