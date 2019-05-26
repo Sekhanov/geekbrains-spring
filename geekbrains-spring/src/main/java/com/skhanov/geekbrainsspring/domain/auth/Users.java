@@ -1,6 +1,6 @@
 package com.skhanov.geekbrainsspring.domain.auth;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class User {
+public class Users {
 	
 	@Id
 	private String username;
@@ -23,6 +23,6 @@ public class User {
 	@ManyToMany
 	@JoinTable(name = "authorities", joinColumns = @JoinColumn(name = "username"),
 	inverseJoinColumns = @JoinColumn(name = "authority"))
-	private List<Role> roles;
+	private Set<Role> roles;
 
 }
