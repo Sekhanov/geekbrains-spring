@@ -18,6 +18,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
 
 import com.skhanov.geekbrainsspring.domain.auth.Users;
 
@@ -39,9 +41,11 @@ public class Student {
 	private int id;
 	
 	@NonNull
+	@NotBlank(message = "name can`t be blank")
 	private String name;
 	
 	@NonNull
+	@NotBlank(message = "surname can`t be blank")
 	private String surname;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -71,8 +75,10 @@ public class Student {
 		this.addTime = new Date();
 	}
 	
+	@NotBlank(message = "phone can`t be blank")
 	@Transient
 	private String newPhone;
+	@javax.validation.constraints.Email(message = "Email is not correct")
 	@Transient
 	private String newEmail;
 	

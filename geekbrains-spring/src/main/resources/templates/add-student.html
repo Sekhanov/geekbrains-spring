@@ -32,23 +32,27 @@
 			<label>
 				Name:
 				<input th:field="*{name}" type="text">
-<!-- 				<span th:if="${#fields.hasErrors('city')}" th:errors="*{city}">city error</span> -->
+				<span class="validation-error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name error</span>
 			</label>
 			<br>
 			<label>
 				Surname:
 				<input th:field="*{surname}" type="text">
+				<span class="validation-error" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">surname error</span>
 			</label>
 			<br>
 			<label>
 				Phone:
 				<input th:field="*{newPhone}" type="text">
+				<span class="validation-error" th:if="${#fields.hasErrors('newPhone')}" th:errors="*{newPhone}">phone error</span>
 			</label>
 			<br>
 			<label>
 				Email:
 				<input th:field="*{newEmail}" type="text">
+				<span class="validation-error" th:if="${#fields.hasErrors('newEmail')}" th:errors="*{newEmail}">email error</span>
 			</label>
+			<br>
 			<input type="submit" value="add" />
 		</form>
 	</section>

@@ -33,7 +33,7 @@ public class StudentService {
 		studentRepository.save(student);
 		phoneRepository.save(new Phone(student.getNewPhone(), student));
 		emailRepository.save(new Email(student.getNewEmail(), student));
-		
+		System.out.println("new student with Email and Phone was added");
 		
 	}
 
