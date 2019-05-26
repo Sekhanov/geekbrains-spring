@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import com.skhanov.geekbrainsspring.domain.auth.Users;
 
@@ -70,6 +70,11 @@ public class Student {
 	private void timeStamp() {
 		this.addTime = new Date();
 	}
+	
+	@Transient
+	private String newPhone;
+	@Transient
+	private String newEmail;
 	
 	
 	

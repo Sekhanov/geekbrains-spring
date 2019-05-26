@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.skhanov.geekbrainsspring.domain.auth.Users;
 
-public interface UserRepository extends CrudRepository<Users, String>{
-
+public interface UserRepository extends CrudRepository<Users, String>{	
+	
 }

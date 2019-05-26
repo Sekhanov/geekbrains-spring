@@ -23,6 +23,7 @@ public class Phone {
 	private int id;
 	@NonNull
 	private String number;
+	@NonNull
 	@ManyToOne
 	@JoinColumn(name = "student_id")	
 	private Student ownerStudent;

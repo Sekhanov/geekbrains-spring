@@ -1,5 +1,6 @@
 package com.skhanov.geekbrainsspring.controllers;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.skhanov.geekbrainsspring.data.AcademicPerformanceRepository;
 import com.skhanov.geekbrainsspring.domain.university.AcademicPerformance;
+import com.skhanov.geekbrainsspring.domain.university.Student;
+import com.skhanov.geekbrainsspring.services.StudentService;
 
 
 
@@ -28,6 +31,8 @@ public class StudentController {
 	@Autowired
 	private AcademicPerformanceRepository academicPerformanceRepository;
 	private Page<AcademicPerformance> data;
+	@Autowired
+	private StudentService studentService;
 		
 
 	
@@ -72,6 +77,19 @@ public class StudentController {
 		
 		List<AcademicPerformance> listAP =  academicPerformanceRepository.findByScoreBetween(min, max);		
 		model.addAttribute("academicPerformances", listAP);
+		return "student";
+	}
+	
+	@GetMapping("add")
+	public String showAddForm(Model model) {
+		Student student = new Student();
+		model.addAttribute("student", student);
+		return "add-student";
+	}
+	
+	@PostMapping("add")
+	public String addStudent(@ModelAttribute("student") Student student, Principal principal) {
+		studentService.addNewStudent(student, principal);
 		return "student";
 	}
 

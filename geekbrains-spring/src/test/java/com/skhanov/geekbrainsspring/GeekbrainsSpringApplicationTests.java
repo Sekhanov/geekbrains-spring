@@ -49,15 +49,15 @@ public class GeekbrainsSpringApplicationTests {
 	}
 	
 	@Test
-	public void studentPersist() {
-		Iterable<Student> students = studentRepository.findAll();
-		for(Student student: students) {
+	public void studentPersist() {		
+		Student student = studentRepository.findByName("Sergey");
 			System.out.println(student.getName());
 			System.out.println(student.getSurname());
+			System.out.println(student.getAddUser().getUsername());
 			System.out.println(student.getPhoneNumberList());
 			System.out.println(student.getEmailList());
 			System.out.println(student.getAddTime());
-		}
+		
 	}
 
 }

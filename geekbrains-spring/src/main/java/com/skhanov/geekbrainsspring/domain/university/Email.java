@@ -27,6 +27,7 @@ public class Email {
 	@NonNull
 	private String email;
 	
+	@NonNull
 	@ManyToOne
 	@JoinColumn(name = "student_id")	
 	private Student ownerStudent;

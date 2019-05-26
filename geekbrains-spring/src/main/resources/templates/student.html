@@ -10,10 +10,13 @@
 		<nav class="main-navigation">
 			<ul class="main-navigation-list">
 				<li>
-					<a th:hfer="@{/}">home</a>
+					<a th:href="@{/}">home</a>
 				</li>
 				<li sec:authorize="hasRole('ROLE_ADMIN')">
 					<a th:href="@{/admin}">admin resource</a>
+				</li>
+				<li sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')">
+					<a th:href="@{/student/add}">add student</a>
 				</li>
 				<li>
 					<a th:href="@{/login}">login</a>
@@ -23,7 +26,7 @@
 						<span sec:authentication="name"></span>
 					</a>
 					<a th:href="@{/logout}">Sign Out</a>
-				</li>
+				</li>				
 			</ul>
 		</nav>
 	</header>
@@ -51,6 +54,8 @@
 			<span th:text="${pageNumber}"></span>
 		</p>
 	</div>
+
+
 
 	<div sec:authorize="hasRole('USER')">
 		<h2>Student List</h2>

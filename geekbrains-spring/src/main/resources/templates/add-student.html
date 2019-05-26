@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>persons site</title>
+<link rel="stylesheet" th:href="@{/css/stile.css}" href="../static/css/stile.css">
+</head>
+
+<body>
+	<header>
+		<nav class="main-navigation">
+			<ul class="main-navigation-list">
+				<li>
+					<a th:href="@{/}">home</a>
+				</li>
+				<li sec:authorize="hasRole('ROLE_ADMIN')">
+					<a th:href="@{/admin}">admin resource</a>
+				</li>
+				<li>
+					<a th:href="@{/login}">login</a>
+				</li>
+				<li sec:authorize="isAuthenticated()">
+					<a th:href="@{/userinfo}">
+						<span sec:authentication="name"></span>
+					</a>
+					<a th:href="@{/logout}">Sign Out</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	<section>
+		<form th:object="${student}" method="post" action="/student/add">
+			<label>
+				Name:
+				<input th:field="*{name}" type="text">
+<!-- 				<span th:if="${#fields.hasErrors('city')}" th:errors="*{city}">city error</span> -->
+			</label>
+			<br>
+			<label>
+				Surname:
+				<input th:field="*{surname}" type="text">
+			</label>
+			<br>
+			<label>
+				Phone:
+				<input th:field="*{newPhone}" type="text">
+			</label>
+			<br>
+			<label>
+				Email:
+				<input th:field="*{newEmail}" type="text">
+			</label>
+			<input type="submit" value="add" />
+		</form>
+	</section>
+
+</body>
+</html>
