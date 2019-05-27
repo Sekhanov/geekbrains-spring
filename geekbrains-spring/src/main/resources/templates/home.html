@@ -9,10 +9,11 @@
 	<header>
 		<nav class="main-navigation">
 			<ul class="main-navigation-list">
-				<li><a th:hfer="@{/}">home</a></li>
+				<li><a th:href="@{/}">home</a></li>
 				<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin}">admin resource</a></li>
 				<li><a th:href="@{/login}">login</a></li>
 				<li sec:authorize="isAuthenticated()"><a th:href="@{/userinfo}"><span sec:authentication="name"></span></a> <a th:href="@{/logout}">Sign Out</a></li>
+				<li><a th:href="@{/registration}">registration</a></li>
 			</ul>
 		</nav>
 	</header>
