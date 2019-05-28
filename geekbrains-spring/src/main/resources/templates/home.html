@@ -12,7 +12,9 @@
 				<li><a th:href="@{/}">home</a></li>
 				<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin}">admin resource</a></li>
 				<li><a th:href="@{/login}">login</a></li>
-				<li sec:authorize="isAuthenticated()"><a th:href="@{/userinfo}"><span sec:authentication="name"></span></a> <a th:href="@{/logout}">Sign Out</a></li>
+				<li sec:authorize="isAuthenticated()"><a th:href="@{/userinfo}">
+						<span sec:authentication="name"></span>
+					</a> <a th:href="@{/logout}">Sign Out</a></li>
 				<li><a th:href="@{/registration}">registration</a></li>
 			</ul>
 		</nav>
@@ -24,8 +26,7 @@
 		<br>
 		<a th:href="@{/book}" href="book.html">hw lesson 5 - mvc thymeleaf</a>
 		<br>
-		<a th:href="@{/human}" href="human.html">humans table from model</a>
-
+		<a th:href="@{/human}" href="human.html">lesson 8 REST</a>
 		<form class="summa-resu-function" action="/math/summ" method="post">
 			<p>summa with rest return</p>
 			<label>
